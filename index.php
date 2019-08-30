@@ -37,6 +37,8 @@
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
+    <?php else: ?>
+      <p>投稿はありません</p>
     <?php endif; ?>
   </main>
   <!-- curriculumここまで -->
