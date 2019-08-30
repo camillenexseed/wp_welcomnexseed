@@ -17,24 +17,27 @@
   <!-- curriculum -->
   <main class="curriculum">
     <h2 class="sub-title">NexSeed Life</h2>
+    <?php if (have_posts()): ?>
     <div class="swiper-container">
       <ul class="swiper-wrapper img-box">
+      <?php while (have_posts()): the_post(); ?>
         <li class="swiper-slide">
-          <img src="<?php echo get_template_directory_uri(); ?>/img/programming.jpg" alt="">
-          <span>programing</span>
-        </li>
-        <li class="swiper-slide">
-          <img src="<?php echo get_template_directory_uri(); ?>/img/english.jpg" alt="">
-          <span>English</span>
-        </li>
-        <li class="swiper-slide">
-          <img src="<?php echo get_template_directory_uri(); ?>/img/enjoy.jpg" alt="">
-          <span>Enjoy</span>
-        </li>
+        <?php if (has_post_thumbnail()): ?>
+          <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('thumbnail'); ?></a>
+        <?php else: ?>
+          <a href="<?php the_permalink(); ?>"><img src="https://placehold.jp/300x300.png" alt="" height="300" width="300"></a>
+        <?php endif; ?>
+        <p><?php the_category(); //カテゴリ?></p>
+        <?php the_excerpt(); //本文抜粋?>
+        <p><?php the_time('Y年m月d日'); //投稿日時?></p>
+        <span><a href="<?php the_permalink(); ?>"><?php the_title(); //タイトル?></a></span>
+      </li>
+      <?php endwhile; ?>
       </ul>
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
+    <?php endif; ?>
   </main>
   <!-- curriculumここまで -->
 
